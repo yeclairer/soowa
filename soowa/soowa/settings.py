@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-rz!h19l=$#10e5tcvis%&2%6o3u+nhoa0+kt*!=li(ekby_$cp
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    ".ap-northeast-2.compute.amazonaws.com"
+    ".ap-northeast-2.compute.amazonaws.com",
+    "127.0.0.1",
+    "52.78.218.108"
 ]
 
 
