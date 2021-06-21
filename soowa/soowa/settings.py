@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+ROOT_DIR = os.path.dirname(BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -124,6 +124,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_DIR = os.path.join(BASE_DIR,'soowa_web/static')
+STATICFILES_DIRS = [ STATIC_DIR, ]
+STATIC_ROOT = os.path.join(ROOT_DIR, '.static_root')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -131,9 +134,9 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-) 
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR, 'static'),
+#) 
 
 #2021.6.20추가 https://dheldh77.tistory.com/entry/Django-이미지-업로드
 # 미디어 파일을 관리할 루트 media 디렉터리
