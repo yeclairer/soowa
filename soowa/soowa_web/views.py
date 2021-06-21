@@ -26,7 +26,7 @@ def transformdata(request):
 def dhand(request):
     result= handtrack(request)
     """
-    #finger= sum(result)
+    finger= sum(result)
     if finger==1:
         return render(request,'soowa_web/index.html', {"result": result} )
     elif finger==2:
@@ -35,17 +35,18 @@ def dhand(request):
         return render(request,'soowa_web/index3.html', {"result": result} ) 
     elif finger==4:
         return render(request,'soowa_web/index4.html', {"result": result} ) 
-        """
+    """  
     #수정
     if result==6:
-        return render(request,'soowa_web/index4.html', {"result": result} ) 
+        return render(request,'soowa_web/index.html', {"result": "별"} ) 
     elif result==7:
-        return render(request,'soowa_web/index4.html', {"result": result} )     
+        return render(request,'soowa_web/index2.html', {"result": "해"} )     
     elif result==8:
-        return render(request,'soowa_web/index4.html', {"result": result} ) 
+        return render(request,'soowa_web/index3.html', {"result": "달"} ) 
     elif result==9:
-        return render(request,'soowa_web/index4.html', {"result": result} ) 
+        return render(request,'soowa_web/index4.html', {"result": "무지개"} ) 
     #수정 여기까지
+
     else:
         return render(request,'soowa_web/index.html', {"result": result} ) 
 
