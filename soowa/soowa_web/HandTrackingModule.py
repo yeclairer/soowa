@@ -43,7 +43,7 @@ class handDetector():
 
         return lmList
 
-
+"""
 def main():
     #runtime.LockOSThread()
     pTime = 0
@@ -66,3 +66,4 @@ def main():
 
         cv2.imshow("Image", img)
         cv2.waitKey(1)
+"""
