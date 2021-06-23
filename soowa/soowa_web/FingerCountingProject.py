@@ -33,7 +33,6 @@ def handtrack(request):
     while True:
         success, img = cap.read()
         # 웹캠 이미지에서 HandTracking
-        cv2.imshow("Image", img)
         img = detector.findHands(img)
         lmList = detector.findPosition(img, draw=False)
 
@@ -138,7 +137,7 @@ def handtrack(request):
                     state.append(5)
                     # print(state)
         #원래
-        #cv2.imshow("Image", img)
+        cv2.imshow("Image", img)
         cv2.waitKey(100)
 
         cTime = time.time()

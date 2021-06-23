@@ -65,7 +65,7 @@ class GestureListView(viewsets.ModelViewSet):
     serializer_class = GestureSerializer
 
 def dhand(request):
-    #threading.Thread(target=camera).start()
+    threading.Thread(target=camera).start()
     #sleep(10/100)
     result= handtrack(request)
     #camera(request)
