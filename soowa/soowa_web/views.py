@@ -6,15 +6,52 @@ from rest_framework import permissions
 from .serializers import GestureSerializer
 from .models import Gesture, Post, Photo
 from .FingerCountingProject import handtrack
-
+from django.views.decorators import gzip
+from django.http import StreamingHttpResponse
+from multiprocessing import Process
+import cv2
+import threading
+from time import sleep 
 # Create your views here.
 def first(request):
-    return render(request, 'soowa_web/index.html',{})
+    return render(request,'soowa_web/first.html',{})
+
+def camera(request):
+    return render(request,'soowa_web/cam.html',{})
+
+class VideoCamera(object):
+    def __init__(self):
+        self.video = cv2.VideoCapture(0)
+        (self.grabbed, self.frame) = self.video.read()
+        threading.Thread(target=self.update, args=()).start()
+
+    def __del__(self):
+        self.video.release()
+
+    def get_frame(self):
+        image = self.frame
+        _, jpeg = cv2.imencode('.jpg', image)
+        return jpeg.tobytes()
+
+    def update(self):
+        while True:
+            (self.grabbed, self.frame) = self.video.read()
+
+def gen(cam):
+    while True:
+        frame = cam.get_frame()
+        yield(b'--frame\r\n'
+              b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
+@gzip.gzip_page
+def opencam(request):
+    cam = VideoCamera()
+    return StreamingHttpResponse(gen(cam), content_type="multipart/x-mixed-replace;boundary=frame")
 
 result={}
+
 def transformdata(request):
     list= Gesture.objects.last()
-
     index= list.name
     color_result= list.moveX + list.moveY
     result= { index: color_result }
@@ -23,8 +60,21 @@ def transformdata(request):
     if list.gestureNum==2:
         return render(request,'soowa_web/first.html',{"result": result})
 
+class GestureListView(viewsets.ModelViewSet):
+    queryset = Gesture.objects.all()
+    serializer_class = GestureSerializer
+
 def dhand(request):
+    #threading.Thread(target=camera).start()
+    #sleep(10/100)
     result= handtrack(request)
+    #camera(request)
+    #p1 = Process(target=camera)
+    #p2 = Process(target=handtrack)
+    #p1.start()
+    #p2.start()
+    #p1.join()
+    #p2.join()
     """
     finger= sum(result)
     if finger==1:
@@ -49,27 +99,3 @@ def dhand(request):
 
     else:
         return render(request,'soowa_web/index.html', {"result": result} ) 
-
-class GestureListView(viewsets.ModelViewSet):
-    queryset = Gesture.objects.all()
-    serializer_class = GestureSerializer
-
-def create(request):
-    if(request.method == 'POST'):
-        post = Post()
-        post.title = request.POST['title']
-        post.date = timezone.datetime.now()
-        post.save()
-        # name 속성이 imgs인 input 태그로부터 받은 파일들을 반복문을 통해 하나씩 가져온다 
-        for img in request.FILES.getlist('imgs'):
-            # Photo 객체를 하나 생성한다.
-            photo = Photo()
-            # 외래키로 현재 생성한 Post의 기본키를 참조한다.
-            photo.post = post
-            # imgs로부터 가져온 이미지 파일 하나를 저장한다.
-            photo.image = img
-            # 데이터베이스에 저장
-            photo.save()
-        return redirect('/index/' + str(post.id))
-    else:
-        return render(request, 'soowa_web/index.html')

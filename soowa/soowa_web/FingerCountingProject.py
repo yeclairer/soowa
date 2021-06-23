@@ -2,35 +2,41 @@ import cv2
 import time
 import os
 from .HandTrackingModule import handDetector
-
+from django.views.decorators import gzip
+from django.http import StreamingHttpResponse
+import threading
 
 def handtrack(request):
-    # 카메라 화면 출력 사이즈
+    
     wCam, hCam = 640, 480
-    cap = cv2.VideoCapture(0)
+    #cap= VideoCamera()
+    cap= cv2.VideoCapture(0)
     cap.set(3, wCam)
     cap.set(4, hCam)
 
     pTime = time.time()
     tip = [4, 8, 12, 16, 20]
+
     """second = [3, 7, 11, 15, 19]
     third = [2, 6, 10, 14, 18]
     fourth = [1, 5, 9, 13, 17]
     mid = 0"""
+
     state = []
     X = []
-    #Y = []
     same = 0
     result = -1
 
     detector = handDetector(detectionCon=0.75)
+    
 
     while True:
         success, img = cap.read()
-
         # 웹캠 이미지에서 HandTracking
+        cv2.imshow("Image", img)
         img = detector.findHands(img)
         lmList = detector.findPosition(img, draw=False)
+
         fingers = []
         if len(lmList) != 0:
             # 오른손만
@@ -116,7 +122,7 @@ def handtrack(request):
                 else:
                     same = 0
                     state.append(32)
-                    # print(state)
+                    # print(state)ㄴ
 
         # 5 [1, 1, 1, 1, 1]
         if fingers == [1, 1, 1, 1, 1]:
@@ -131,12 +137,12 @@ def handtrack(request):
                     same = 0
                     state.append(5)
                     # print(state)
-
-        cv2.imshow("Image", img)
+        #원래
+        #cv2.imshow("Image", img)
         cv2.waitKey(100)
 
         cTime = time.time()
-        if (cTime - pTime > 5):
+        if (cTime - pTime > 3):
             if not len(state) == 0:
  
                 if state[-4:] == [0, 5, 0, 5]:
@@ -157,4 +163,10 @@ def handtrack(request):
                 X = []
         if result == -1:
             continue
+        
+        cap.release()
+        cv2.destroyAllWindows()
         return result
+
+
+
