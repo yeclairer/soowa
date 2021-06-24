@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework import routers
 from soowa_web import views
+from soowa_web import FingerCountingProject
 
 
 router= routers.DefaultRouter()

@@ -1,7 +1,6 @@
 import cv2
 import mediapipe as mp
 import time
-#import runtime
 
 
 class handDetector():
@@ -43,7 +42,7 @@ class handDetector():
 
         return lmList
 
-"""
+
 def main():
     #runtime.LockOSThread()
     pTime = 0
@@ -66,4 +65,3 @@ def main():
 
         cv2.imshow("Image", img)
         cv2.waitKey(1)
-"""

@@ -1,27 +1,20 @@
 import cv2
 import time
 import os
-from .HandTrackingModule import handDetector
+import threading
 from django.views.decorators import gzip
 from django.http import StreamingHttpResponse
-import threading
+from django.shortcuts import render
+from .HandTrackingModule import handDetector
 
-def handtrack(request):
-    
-    wCam, hCam = 640, 480
-    #cap= VideoCamera()
+
+def printcam(request):
+    return render(request,'soowa_web/cam.html',{})
+
+def handtrack(request):  
     cap= cv2.VideoCapture(0)
-    cap.set(3, wCam)
-    cap.set(4, hCam)
-
     pTime = time.time()
     tip = [4, 8, 12, 16, 20]
-
-    """second = [3, 7, 11, 15, 19]
-    third = [2, 6, 10, 14, 18]
-    fourth = [1, 5, 9, 13, 17]
-    mid = 0"""
-
     state = []
     X = []
     same = 0
@@ -29,10 +22,11 @@ def handtrack(request):
 
     detector = handDetector(detectionCon=0.75)
     
-
     while True:
         success, img = cap.read()
         # 웹캠 이미지에서 HandTracking
+        if not success:
+            break
         img = detector.findHands(img)
         lmList = detector.findPosition(img, draw=False)
 
@@ -162,10 +156,17 @@ def handtrack(request):
                 X = []
         if result == -1:
             continue
-        
         cap.release()
         cv2.destroyAllWindows()
         return result
+    
 
-
-
+"""
+if __name__ == "__main__":
+    sleep(10/100)
+    #detectresult(request)
+    #threading.Thread(target=detectresult).start()
+    p2= Process(target=detectresult)
+    p2.start()
+    p2.join()
+"""
