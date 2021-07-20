@@ -1,5 +1,5 @@
 import { GlowParticle } from "./glowparticle.js";
-
+//헤헤헤
 const COLORS = [
     {r:197, g:206, b:255},        //blue
     {r: 253, g: 255, b: 191},    //yellow
