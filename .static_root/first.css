@@ -1,0 +1,101 @@
+
+* {margin: 0;
+    padding: 0;}
+a{text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;}
+
+body {background-color: rgb(137, 174, 255);}
+
+div.con1{
+    width: 58%;
+    margin-left: 21%;
+    margin-right: 21%;
+    height: 85px;
+    margin-top: 155px;}
+
+    div.con1 p.menu1{
+        float: left;
+        font-size: 85px;
+        font-style: italic;
+        font-weight: bold;
+        color: rgb(250, 215, 245)}
+
+    div.con1 p.menu2{
+        float: right;
+        font-size: 85px;
+        font-style: italic;
+        font-weight: bold;
+        color: rgb(255, 249, 208);}
+
+
+div.con2{
+    width: 58%;
+    margin-left: 21%;
+    margin-right: 21%;
+    height: 100px;}
+
+    div.con2 div.logo1 img{
+        object-fit: cover;
+        width: 45%;
+        height: 100%;
+        float: left;}
+    div.con2 div.line img{
+        object-fit: cover;
+        margin-top: 60px;
+        width: 10%;
+        float: left;
+    }
+    div.con2 div.logo2 img{
+        object-fit: cover;
+        width: 45%;
+        height: 100%;
+        float: right;}
+
+
+div.con3{
+    width: 58%;
+    margin-left: 21%;
+    margin-right: 21%;
+    height: 85px;}
+
+    div.con3 p.menu3{
+        font-size: 85px;
+        float: left;
+        font-style: italic;
+        font-weight: bold;
+        color: rgb(194, 243, 255)
+    }
+    div.con3 p.menu4{
+        font-size: 85px;
+        float: right;
+        font-style: italic;
+        font-weight: bold;
+        color: rgb(250, 215, 245)}
+
+
+div.bar {
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    height: 30px;
+    margin-top: 150px;
+}
+
+    div.bar p.insta {
+        width: 35%;
+        margin-left: 10%;
+        float: left;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: right;
+        font-size: 15px;
+        margin-top: 5px;
+        color: #ffffff;
+    }
+    div.bar p.yout {width: 35%;
+        margin-left: 10%;
+        float: left;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: left;
+        font-size: 15px;
+        margin-top: 5px;
+        color: #ffffff;}

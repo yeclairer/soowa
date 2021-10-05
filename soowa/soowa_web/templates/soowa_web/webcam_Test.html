@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <video
+      width="1080"
+      height="640"
+      autoplay
+      playsinline
+      muted
+      id="player"
+    ></video>  
+    <script>
+      var player = document.getElementById("player");
+      var handleSuccess = function (stream) {
+        player.srcObject = stream;
+      };
+      navigator.mediaDevices.getUserMedia({ video: true }).then(handleSuccess);
+    </script>
+    <a href="/facesNum" class="button">facesNum버튼</a>
+    <a href="/dhand" class="button">dhand버튼</a>
+    <a href="/emotionDetect" class="button">emotionDetect버튼</a>
+    <a href="/GestureRecognition" class="button">GestureRecognition버튼</a>
+  </body>
+</html>
+

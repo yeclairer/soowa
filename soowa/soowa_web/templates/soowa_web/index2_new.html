@@ -1,0 +1,100 @@
+{% load static %}
+{{ result | json_script:"dict-id"}}  
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+        <title></title>
+        <link rel="stylesheet" href="{% static 'style2_new.css'%}">
+    </head>
+    <body>
+
+      <div class="first">
+          <div class="one">
+            
+            <!--button1-->
+            <div class="sequenceOne">
+            1
+            </div>
+
+            <!--button2-->
+            <div class="sequenceTwo">
+            2
+            </div>
+
+            <!--button3-->
+            <div class="sequenceThree">
+            3
+            </div>
+
+            <!--button4-->
+            <div class="sequenceFour">
+            4
+            </div>
+
+            <!--button5-->
+            <div class="sequenceFive">
+            5
+            </div>
+            <!--cam-->
+            <canvas class="canvas" width="200" height="100">
+            </canvas>
+            <video
+              autoplay
+              playsinline
+              muted
+              id="player"
+              class = "videoPlayer"
+              >
+              </video>   
+              <script>
+                var player = document.getElementById("player");
+                var handleSuccess = function (stream) {
+                  player.srcObject = stream;
+                };
+          
+                navigator.mediaDevices.getUserMedia({ video: true }).then(handleSuccess);
+              </script>
+
+          </div>
+
+
+          <div class="two">
+
+            <!--button1-->
+            <div class="sequenceFirst">
+            Intro1
+            </div>
+
+            <!--button2-->
+            <div class="sequenceSecond">
+            Intro2
+            </div>
+
+            <!--button3-->
+            <div class="sequenceThird">
+            Intro3
+            </div>
+
+            <!--button4-->
+            <div class="sequenceFourth">
+            Intro4
+            </div>
+
+            <!--button5-->
+            <div class="sequenceFifth">
+            Intro5
+            </div>
+          </div>
+      </div>
+
+      <div class="second">
+      </div>
+
+    </body>
+</html>
+

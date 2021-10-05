@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+div.first{
+  background-color: rgb(169, 255, 226);
+  width: 100%;
+  height: 700px;}
+
+  div.first div.one {
+      margin-top: 50px;
+      background-color: rgb(255, 250, 187);
+      width: 40%;
+      height: 600px;
+      margin-left: 10%;
+      float: left;
+    }
+
+      div.first div.one div.sequenceOne {
+        float: left;
+        width: 15%;
+        height: 15%;
+        margin-left: 5%;
+        margin-right: 3%;
+        background-color: rgb(223, 255, 106);
+      }
+
+      div.first div.one div.sequenceTwo {
+        float: left;
+        width: 15%;
+        height: 15%;
+        margin-right: 3%;
+        background-color: rgb(223, 255, 106);
+      }
+
+      div.first div.one div.sequenceThree {
+        float: left;
+        width: 15%;
+        height: 15%;
+        margin-right: 3%;
+        background-color: rgb(223, 255, 106);
+      }
+
+      div.first div.one div.sequenceFour {
+        float: left;
+        width: 15%;
+        height: 15%;
+        margin-right: 3%;
+        background-color: rgb(223, 255, 106);
+      }
+
+      div.first div.one div.sequenceFive {
+        float: left;
+        width: 15%;
+        height: 15%;
+        margin-right: 5%;
+        background-color: rgb(223, 255, 106);
+      }
+
+  
+  div.first div.two {
+      margin-top: 50px;
+      background-color: rgb(255, 214, 252);
+      width: 40%;
+      height: 600px;
+      margin-left: 5%;
+      float: left;}
+
+      div.first div.two div.sequenceFirst {
+        float: left;
+        width: 15%;
+        height: 15%;
+        margin-left: 5%;
+        margin-right: 3%;
+        background-color: rgb(176, 241, 225);
+      }
+
+      div.first div.two div.sequenceSecond {
+        float: left;
+        width: 15%;
+        height: 15%;
+        margin-right: 3%;
+        background-color: rgb(176, 241, 225);
+      }
+
+      div.first div.two div.sequenceThird {
+        float: left;
+        width: 15%;
+        height: 15%;
+        margin-right: 3%;
+        background-color: rgb(176, 241, 225);
+      }
+
+      div.first div.two div.sequenceFourth {
+        float: left;
+        width: 15%;
+        height: 15%;
+        margin-right: 3%;
+        background-color: rgb(176, 241, 225);
+      }
+
+      div.first div.two div.sequenceFifth {
+        float: left;
+        width: 15%;
+        height: 15%;
+        margin-right: 5%;
+        background-color: rgb(176, 241, 225);
+      }
+
+
+      
+div.second{
+  background-color: rgb(255, 221, 159);
+  width: 100%;
+  height: 700px;}
