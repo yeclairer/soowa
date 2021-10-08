@@ -7,6 +7,7 @@ from rest_framework import routers
 from soowa_web import views
 from soowa_web import FingerCountingProject
 from soowa_web import GestureRecognition
+from soowa_web import ONEorTWO
 
 
 urlpatterns = [
@@ -17,6 +18,7 @@ urlpatterns = [
     url('dhand', views.dhand, name='dhand'),
     url('webcam_Test', views.webcam_Test, name='webcam_Test'),
     url('GestureRecognition', GestureRecognition.GestureRecognition, name='GestureRecognition'),
+    url('oneortwo', ONEorTWO.oneortwo, name='oneortwo'),
     url('new1', views.new1, name='new1'),
     url('new2', views.new2, name='new2'),
     url(r'^', views.first, name='first'),

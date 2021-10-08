@@ -27,41 +27,22 @@
     </div>
 
      <body>    
-      <div class="first">
-       
-          <div class="one">
-            <canvas class="canvas" width="600" height="400">
-            </canvas>
-            <video
-              autoplay
-              playsinline
-              muted
-              id="player"
-              class = "videoPlayer"
-              >
-              </video>    
-              <script>
-                var player = document.getElementById("player");
-                var handleSuccess = function (stream) {
-                   player.srcObject = stream;
-                 };
-                 navigator.mediaDevices.getUserMedia({ video: true }).then(handleSuccess);
 
-                 const canvas = document.querySelector('.canvas');
-
-              </script>
-               
-          </div>
-          <div class="two">       
+        <video id="video" width="1" height="1" autoplay=""></video>
+        <div style="position: relative;">
+        <canvas id="canvas" width="800" height="600" 
+          style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+        <canvas id="canvas2" width="800" height="600" 
+          style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
+        </div>
+          <!-- <div class="two">       
             <p class="sampleTxt"> <a href="http://127.0.0.1:8000/new2">당신은 사랑받기 위해 태어난 사람</a></p>
-          </div>
-      </div>
-     
-      <div class="second">
-      </div>
+          </div> -->
+
     </body>
 </html>
 <script>
 
 </script>
 <script type="module" src="{% static 'logoMovingFinal.js'%}"></script>
+<script src="{% static 'webcam.js'%}"></script>

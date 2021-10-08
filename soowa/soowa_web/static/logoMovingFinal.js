@@ -1,73 +1,80 @@
 
-const canvas = document.querySelector('.canvas');
-const context = canvas.getContext('2d');
-
 const imgElem = new Image();
+var canvas2 = document.getElementById('canvas2'),
+context2 = canvas2.getContext('2d');
 
-imgElem.addEventListener('load',() => {
-  function draw(drawX, drawY, randScale) {
-    context.clearRect(drawX, drawY, randScale, randScale);
-    context.drawImage(imgElem, drawX, drawY, randScale, randScale);
+function sleep (delay) {
+  var start = new Date().getTime();
+  while (new Date().getTime() < start + delay);
+}
+
+imgElem.addEventListener('load', () => {
+  
+  function drawItem(drawX, drawY, randScale) {
+    context2.clearRect(drawX, drawY, randScale, randScale);
+    context2.drawImage(imgElem, drawX, drawY, randScale, randScale);
     drawY -= 3;
 
     if (drawY <= -1 * randScale) {
       return;
     }
-    console.log(drawY);
-
-    requestAnimationFrame(draw.bind(window, drawX, drawY, randScale));
+    requestAnimationFrame(drawItem.bind(window, drawX, drawY, randScale));
   }
 
   function drawInit() {
-    var x = Math.random() * 600;
-    var y = Math.random() * 400;
+    var x = Math.random() * 800;
+    var y = Math.random() * 600;
     var s = (Math.random() * 100) + 50;
-    draw (x, y, s);
+    drawItem (x, y, s);
   }
 
   drawInit();
 
-  setInterval(drawInit, 400);
+  setInterval(drawInit, 1000);
 
-})
 
-var sentence= {0:'JEJUDO', 1:'BLUE', 2:'NIGHT', 3:'STAR', 4:'BELOW'};
+
+});
+
+
+//var sentence_new={'SINCERLY': 0 , 'LONG FOR': 1, 'IF': 2, 'RAINBOW': 3 , 'RISE': 4,'WILL': 5 }
+var sentence_new=['SINCERELY','LONG FOR', 'IF','RAINBOW','RISE','WILL'];
+//var sentence= {0:'JEJUDO', 1:'BLUE', 2:'NIGHT', 3:'STAR', 4:'BELOW'};
+var imageSource= ['static/logo_inf.png','static/logo_inf_blue.png','static/logo_inf_yellow.png']
 var goal_idx=0;
-var goal_gesture=sentence[goal_idx];
+var goal_gesture=sentence_new[goal_idx];
 
 $('#start_btn').click(function(){  
   $.ajax({
-    url: "{% url 'GestureRecognition' %}",
+    url: "{% url 'oneortwo' %}",
     type: 'GET',
     datatype: 'json',
     success: function(data){
-        
+        imgElem.src = 0;
         var gesture_name= data['gesture'];
         var gesture_id= data['gesture_id'];
-        if (gesture_id == 0) {
-          imgElem.src = "static/logo_inf.png";
-        }
-        else if (gesture_id == 2) {
-          imgElem.src = "static/logo_inf_blue.png";
-        }
-        else {
-          imgElem.src = "static/logo_inf_yellow.png";
-        }
-        
+
+        imgElem.src = imageSource[gesture_id];
         //현재 제스처와 목표 제스처 값 동기화
         $('#current_gesture').html(gesture_name);
         $('#goal_gesture').html(goal_gesture);
-
+        
         //목표제스처와 현재 제스처가 일치하면 다음 제스처로
-        if (goal_idx == gesture_id){
+        if (gesture_name == goal_gesture){
           goal_idx= goal_idx + 1;  
-          goal_gesture= sentence[goal_idx];
-          $('#goal_gesture').html(goal_gesture);
-          alert(gesture_name+'성공! 다음 목표:'+goal_gesture);
-          imgElem.src = 0;
+          goal_gesture= sentence_new[goal_idx];
+          setTimeout(function() {
+            alert(gesture_name+'성공! 다음 목표:'+goal_gesture);
+            $('#goal_gesture').html(goal_gesture);
+            $("#start_btn").trigger("click");
+          }, 3000);     
         }
+        else {
         //인식 재시작
-        $("#start_btn").trigger("click");
+          $("#start_btn").trigger("click");
+        }
+       
+        
       
     },
     error: function(){
