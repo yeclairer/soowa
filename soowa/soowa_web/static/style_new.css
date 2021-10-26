@@ -5,7 +5,7 @@
 
 div.first{
   background-color: rgb(169, 255, 226);
-  width: 100%;
+  width: 50%;
   height: 700px;}
 
   div.first div.one {
@@ -33,14 +33,14 @@ div.first{
   div.first div.two {
       margin-top: 50px;
       background-color: rgb(255, 214, 252);
-      width: 40%;
+      width: 50%;
       height: 600px;
       margin-left: 5%;
       float: left;}
       
-      div.first div.two p.sampleTxt {
-        float: left;
-        width: 90%;
+      div.first div.two video.guide {
+        float: right;
+        width: 50%;
         height: 20%;
         margin-left: 5%;
         background-color: rgb(223, 255, 106);

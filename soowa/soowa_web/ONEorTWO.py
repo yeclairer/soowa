@@ -10,12 +10,13 @@ from keras.models import model_from_json
 from keras.preprocessing import image 
 from django.http import JsonResponse
 
-model1 = load_model('/Users/yunkyeong/Desktop/project/soowa/soowa_web/templates/soowa_web/ONEmodel2.h5')
-model2 = load_model('/Users/yunkyeong/Desktop/project/soowa/soowa_web/templates/soowa_web/TWOmodel2.h5')
+model1 = load_model('/Users/yunkyeong/Desktop/project/soowa/soowa_web/templates/soowa_web/ONEmodel5.h5')
+model2 = load_model('/Users/yunkyeong/Desktop/project/soowa/soowa_web/templates/soowa_web/TWOmodel5.h5')
 
 def oneortwo(request):
     actionsONE = {0:'long for', 1:'rainbow'}
     actionsTWO = {0:'sincerely', 1:'if', 2:'rise', 3:'will'}
+    Actions = {0:'sincerely', 1:'if', 2:'rise', 3:'will', 4:'longfor', 5:'rainbow'}
     seq_length = 30
 
     # MediaPipe hands model
@@ -24,8 +25,8 @@ def oneortwo(request):
 
     cap = cv2.VideoCapture(0)
 
-    seqONE, seqTWO = [], []
-
+    seqONE, seqTWO, action_seq = [], [], []
+    this_action = '?'
     # Initiate holistic model
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
         while cap.isOpened():
@@ -141,14 +142,23 @@ def oneortwo(request):
                     i_pred = int(np.argmax(y_pred))
                     conf = y_pred[i_pred]
 
-                    if conf < 0.9:
+                    if conf < 0.8:
                         continue
 
                     action = actionsTWO[i_pred]
+                    action_seq.append(action)
+                    if len(action_seq) < 3:
+                        continue
 
+                    this_action = '??'
+                    #if action_seq[-1] == action_seq[-2] == action_seq[-3]:
+                    if action_seq[-1] == action_seq[-2]:
+                        this_action = action
+
+                
                     detect_result = {
                             'gesture_id': i_pred,
-                            'gesture': action.upper(),                       
+                            'gesture': this_action.upper(),                       
                     }
 
                     return JsonResponse(detect_result)
@@ -165,15 +175,23 @@ def oneortwo(request):
                     i_pred = int(np.argmax(y_pred))
                     conf = y_pred[i_pred]
 
-                    if conf < 0.9:
+                    if conf < 0.8:
                         continue
 
-                    action = actionsONE[i_pred]
-                    #내가 추가한거 
-    
+                    #action = actionsONE[i_pred]
+                    gesture_idx= i_pred+len(actionsTWO)
+                    action = Actions[gesture_idx]
+                    action_seq.append(action)
+                    if len(action_seq) < 2:
+                        continue
+
+                #this_action = '?'
+                    if action_seq[-1] == action_seq[-2] :
+                        this_action = action
+                        #내가 추가한거 
                     detect_result = {
-                        'gesture_id': i_pred,
-                        'gesture': action.upper(),                       
+                        'gesture_id': gesture_idx,
+                        'gesture': this_action.upper(),                       
                     }
                     return JsonResponse(detect_result)
 

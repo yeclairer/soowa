@@ -44,7 +44,6 @@ class handDetector():
 
 
 def main():
-    #runtime.LockOSThread()
     pTime = 0
     cTime = 0
     cap = cv2.VideoCapture(0)
