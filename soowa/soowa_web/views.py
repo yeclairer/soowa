@@ -29,15 +29,16 @@ def first(request):
 def new1(request):
     return render(request,'soowa_web/index_new.html',{})
 
-def new2(request):
-    return render(request,'soowa_web/index2_new.html',{})
+def home(request):
+    return render(request,'soowa_web/home.html',{})
 
-def camera(request):
-    return render(request,'soowa_web/cam.html',{})
+def next(request):
+    return render(request,'soowa_web/next.html',{})
+
 
 #html에 캠띄우기 테스트
-def webcam_Test(request):
-    return render(request,'soowa_web/webcam_Test.html',{})
+#def webcam_Test(request):
+ #   return render(request,'soowa_web/webcam_Test.html',{})
 
 class VideoCamera(object):
     def __init__(self):
@@ -84,24 +85,5 @@ def dhand(request):
     else:
         return render(request,'soowa_web/index.html', {"result": result} ) 
 
-def facesNum(request):
-  while (True):
-    cascPath = "/Users/yunkyeong/Desktop/project/soowa/soowa_web/templates/soowa_web/haarcascade_frontalface_default.xml"
-    i = 0
-    # Create the haar cascade
-    faceCascade = cv2.CascadeClassifier(cascPath)
-    video_capture = cv2.VideoCapture(0)
-    # Capture frame-by-frame
-    ret, frame = video_capture.read()
 
-    # Detect faces in the image
-    faces = faceCascade.detectMultiScale(
-        frame,
-        scaleFactor=1.1,
-        minNeighbors=2,
-        minSize=(2, 2),
-    )
-    # print faces found ......
-    facesNumber ="Found {0} faces!".format(len(faces))
-    return render(request, 'soowa_web/index.html', {'result': facesNumber})
 

@@ -11,7 +11,7 @@ div.first{
   div.first div.one {
       margin-top: 50px;
       background-color: rgb(255, 250, 187);
-      width: 40%;
+      width: 50%;
       height: 600px;
       margin-left: 10%;
       float: left;}
