@@ -5,11 +5,8 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from .serializers import GestureSerializer
 from .models import Gesture, Post, Photo
-from .FingerCountingProject import handtrack,printcam
-from .GestureRecognition import GestureRecognition
 from django.views.decorators import gzip
 from django.http import StreamingHttpResponse
-from .HandTrackingModule import handDetector
 from imutils.video import VideoStream
 from imutils.video import FPS
 import os,urllib.request,pickle
@@ -32,13 +29,11 @@ def new1(request):
 def home(request):
     return render(request,'soowa_web/home.html',{})
 
-def next(request):
-    return render(request,'soowa_web/next.html',{})
+def train1(request):
+    return render(request,'soowa_web/train1.html',{})
 
-
-#html에 캠띄우기 테스트
-#def webcam_Test(request):
- #   return render(request,'soowa_web/webcam_Test.html',{})
+def train2(request):
+    return render(request,'soowa_web/train2.html',{})
 
 class VideoCamera(object):
     def __init__(self):
@@ -70,20 +65,3 @@ def gen(cam):
 @gzip.gzip_page
 def opencam(request):
     return StreamingHttpResponse(gen(VideoCamera()),content_type='multipart/x-mixed-replace; boundary=frame')
-
-
-def dhand(request):
-    result= handtrack(request)
-    if result==6:
-        return render(request,'soowa_web/index.html', {"result": "별"} ) 
-    elif result==7:
-        return render(request,'soowa_web/index2.html', {"result": "해"} )     
-    elif result==8:
-        return render(request,'soowa_web/index3.html', {"result": "달"} ) 
-    elif result==9:
-        return render(request,'soowa_web/index4.html', {"result": "무지개"} )
-    else:
-        return render(request,'soowa_web/index.html', {"result": result} ) 
-
-
-
