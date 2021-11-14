@@ -17,6 +17,7 @@ urlpatterns = [
 
     url('train1', views.train1, name='train1'),
     url('train2', views.train2, name='train2'),
+    url('sentence0', sentence.sentence0, name='sentence0'),
     url('sentence1', sentence.sentence1, name='sentence1'),
     url('sentence2', sentence.sentence2, name='sentence2'),
     url(r'^', views.home, name='home'),

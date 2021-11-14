@@ -104,7 +104,7 @@ def detection(cap):
             for i in range(4):
                 distance = np.append(distance, dis1[2*i]-dis[2*i+1])    #[12,]
             Angle = np.append(Angle, distance)
-
+            print(RHAngle[4])
             # Draw Landmark
             # Right Hand
             mp_drawing.draw_landmarks(img, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
@@ -112,5 +112,6 @@ def detection(cap):
             mp_drawing.draw_landmarks(img, results.left_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
             # Pose
             mp_drawing.draw_landmarks(img, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS)
+           
 
     return Angle

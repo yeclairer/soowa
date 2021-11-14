@@ -1,5 +1,6 @@
+//2021.11.11 수정
 const mainFrame = new Image();
-mainFrame.src = 'static/frame.png';
+mainFrame.src = 'static/new_frame.png';
 
 
 // const mainButton = new Image();
@@ -11,6 +12,6 @@ context3 = canvas3.getContext('2d');
 
 mainFrame.addEventListener('load', () => {
 
-  context3.drawImage(mainFrame,0,0,810,630);
+  context3.drawImage(mainFrame,0,0,2400,1400);
 
 });

@@ -1,3 +1,4 @@
+//2021.11.11 수정완료
 (function() {
   
   var canvas = document.getElementById('canvas'),
@@ -22,7 +23,7 @@
   } );
   
   video.addEventListener('play', function() {
-    draw( this, context, 800, 600 );
+    draw( this, context, 650, 470 );
   }, false );
   
   function draw( video, context, width, height ) {
