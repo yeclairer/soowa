@@ -30,8 +30,8 @@ def sentence1(request):
         Actions.append(v)
     #model1 = load_model('/Users/yunkyeong/Desktop/project/soowa/soowa_web/templates/soowa_web/cloudONE.h5')
     #model2 = load_model('/Users/yunkyeong/Desktop/project/soowa/soowa_web/templates/soowa_web/cloudTWO.h5')
-    model1 = load_model('/templates/soowa_web/cloudONE.h5')
-    model2 = load_model('/templates/soowa_web/cloudTWO.h5')
+    model1 = load_model('/soowa_web/templates/soowa_web/cloudONE.h5')
+    model2 = load_model('/soowa_web/templates/soowa_web/cloudTWO.h5')
     ###########################################
 
     seq_length = 10
@@ -115,8 +115,8 @@ def sentence2(request):
         Actions.append(v)
     #model1 = load_model('/Users/yunkyeong/Desktop/project/soowa/soowa_web/templates/soowa_web/shineONE.h5')
     #model2 = load_model('/Users/yunkyeong/Desktop/project/soowa/soowa_web/templates/soowa_web/shineTWO.h5')
-    model1 = load_model('/templates/soowa_web/shineONE.h5')
-    model2 = load_model('/templates/soowa_web/shineTWO.h5')
+    model1 = load_model('/soowa_web/templates/soowa_web/shineONE.h5')
+    model2 = load_model('/soowa_web/templates/soowa_web/shineTWO.h5')
     ###########################################
 
     seq_length = 10
@@ -279,8 +279,8 @@ def sentence0(request):
 
     #model1 = load_model('/Users/yunkyeong/Desktop/project/soowa/soowa_web/templates/soowa_web/ALLONE_4.h5')   # cloudONE / shineONE/ rainbowONE / likeONE / snowONE / forsythiaONE / springONE / galaxyONE
     #model2 = load_model('/Users/yunkyeong/Desktop/project/soowa/soowa_web/templates/soowa_web/ALLTWO_4.h5')   # cloudTWO / shineTWO / rainbowTWO / likeTWO / snowTWO / forsythiaTWO / springTWO / galaxyTWO
-    model1 = load_model('/templates/soowa_web/ALLONE_4.h5')   # cloudONE / shineONE/ rainbowONE / likeONE / snowONE / forsythiaONE / springONE / galaxyONE
-    model2 = load_model('/templates/soowa_web/ALLTWO_4.h5')   # cloudTWO / shineTWO / rainbowTWO / likeTWO / snowTWO / forsythiaTWO / springTWO / galaxyTWO
+    model1 = load_model('/soowa_web/templates/soowa_web/ALLONE_4.h5')   # cloudONE / shineONE/ rainbowONE / likeONE / snowONE / forsythiaONE / springONE / galaxyONE
+    model2 = load_model('/soowa_web/templates/soowa_web/ALLTWO_4.h5')   # cloudTWO / shineTWO / rainbowTWO / likeTWO / snowTWO / forsythiaTWO / springTWO / galaxyTWO
     ###########################################
 
     seq_length = 10
