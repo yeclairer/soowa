@@ -499,7 +499,7 @@ $('#keyword_start_btn').click(function(){
       
     },
     error: function(){
-      alert('에러');
+      
     }
   });
 })
@@ -549,7 +549,7 @@ $('#start_btn').click(function(){
         }    
     },
     error: function(){
-      alert('에러');
+     
     }
   });
 })
